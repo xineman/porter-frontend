@@ -1,0 +1,11 @@
+{
+  "name": "porter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
+  }
+}
