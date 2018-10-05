@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import T from 'prop-types';
+import { fetchAll } from 'modules/Items/reducer';
 
 
-const Home = () => (
-  <div>
-    Homepage
-  </div>
-);
+class Home extends Component {
+  static propTypes = {
+    fetchItems: T.func.isRequired,
+  }
 
-export default Home;
+  componentDidMount() {
+    const { fetchItems } = this.props;
+    fetchItems();
+  }
+
+  render() {
+    return (
+      <div>
+        Homepage
+      </div>
+    );
+  }
+}
+
+export default connect(null, dispatch => ({
+  fetchItems: () => dispatch(fetchAll()),
+}))(Home);
