@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const merge = require('webpack-merge');
 const { HotModuleReplacementPlugin, DefinePlugin } = require('webpack');
 const Dotenv = require('dotenv-webpack');
@@ -5,12 +6,12 @@ const common = require('./webpack.common.js');
 
 const {
   NODE_MODULES_PATH,
-  DIST_PATH
+  DIST_PATH,
 } = require('./config/paths');
 const {
   cssLoader,
   sassLoader,
-  postcssLoader
+  postcssLoader,
 } = require('./config/loaders');
 
 module.exports = merge(common, {
@@ -25,26 +26,26 @@ module.exports = merge(common, {
               'style-loader',
               'css-loader',
               postcssLoader,
-              sassLoader
-            ]
+              sassLoader,
+            ],
           },
           {
             use: [
               'style-loader',
               cssLoader,
               postcssLoader,
-              sassLoader
-            ]
-          }
-        ]
-      }
-    ]
+              sassLoader,
+            ],
+          },
+        ],
+      },
+    ],
   },
 
   output: {
     path: DIST_PATH,
     filename: '[name].[hash].js',
-    chunkFilename: '[name].[chunkhash].js'
+    chunkFilename: '[name].[chunkhash].js',
   },
 
   devServer: {
@@ -56,20 +57,20 @@ module.exports = merge(common, {
     headers: { 'Access-Control-Allow-Origin': '*' },
     compress: true,
     watchOptions: {
-      ignored: NODE_MODULES_PATH
-    }
+      ignored: NODE_MODULES_PATH,
+    },
   },
   plugins: [
     new HotModuleReplacementPlugin(),
 
     new DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
     }),
 
     new Dotenv({
-      path: './.staging.env'
-    })
-  ]
+      path: './.staging.env',
+    }),
+  ],
 });

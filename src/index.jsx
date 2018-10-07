@@ -4,6 +4,8 @@ import { hot } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from 'modules/store';
+import 'assets/styles.global';
+import 'assets/font-awesome';
 import Routes from './routes';
 
 

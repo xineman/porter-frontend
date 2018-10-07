@@ -1,14 +1,5 @@
-import { handleActions, createAction } from 'redux-actions';
-
-
-export const fetchAll = createAction('FETCH_ALL');
-
-// export {app:appActions} = createActions({
-//   APP:{
-//     request:undefined,
-
-//   }
-// })
+import { handleActions } from 'redux-actions';
+import { fetchAll, fetchAllSuccess } from './actions';
 
 
 const items = handleActions(
@@ -17,7 +8,7 @@ const items = handleActions(
       ...state,
       fetchingAll: true,
     }),
-    FETCH_ALL_SUCCESS: (state, { payload }) => ({
+    [fetchAllSuccess]: (state, { payload }) => ({
       ...state,
       fetchingAll: false,
       collection: payload.items,

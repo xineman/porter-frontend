@@ -10,6 +10,7 @@ const {
 } = require('./config/alias');
 const {
   imagesLoader,
+  fileLoader,
 } = require('./config/loaders');
 
 module.exports = {
@@ -42,6 +43,15 @@ module.exports = {
         ],
         use: [
           imagesLoader,
+        ],
+      },
+      {
+        test: /\.woff2?$/,
+        include: [
+          ASSETS_PATH,
+        ],
+        use: [
+          fileLoader,
         ],
       },
     ],

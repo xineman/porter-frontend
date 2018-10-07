@@ -1,0 +1,13 @@
+.root {
+  position: relative;
+}
+
+.title {
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropdownList {
+  position: absolute;
+  top: 100%;
+}

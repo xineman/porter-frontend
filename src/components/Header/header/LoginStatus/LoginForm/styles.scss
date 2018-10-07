@@ -1,0 +1,37 @@
+.root {
+
+}
+
+.inputWrapper {
+  display: flex;
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  width: 100px;
+}
+
+.input {
+  width: 150px;
+  border: 1px solid #4799B7;
+  padding: 5px;
+  font-size: 12px;
+}
+
+.submit {
+  display: block;
+  margin: 15px auto 0;
+  padding: 7px 15px;
+  background: #4799B7;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background: #22556E;
+  }
+}

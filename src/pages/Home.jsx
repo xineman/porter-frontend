@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import T from 'prop-types';
-import { fetchAll } from 'modules/Items/reducer';
+import { fetchAll } from 'modules/Items/actions';
+import Header from 'components/Header';
 
 
 class Home extends Component {
@@ -17,6 +18,7 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <Header />
         Homepage
       </div>
     );
