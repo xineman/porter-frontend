@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import T from 'prop-types';
 import styles from './styles';
 
 
 class LoginForm extends Component {
+  static propTypes = {
+    signIn: T.func.isRequired,
+  }
+
   constructor() {
     super();
     this.state = {
@@ -15,6 +20,10 @@ class LoginForm extends Component {
     this.setState(() => ({
       [name]: value,
     }));
+  }
+
+  handleSignIn = () => {
+    this.props.signIn(this.state);
   }
 
   render() {
@@ -43,7 +52,7 @@ class LoginForm extends Component {
             onChange={this.handleInput}
           />
         </div>
-        <button className={styles.submit} type="button">Sign in</button>
+        <button className={styles.submit} type="button" onClick={this.handleSignIn}>Sign in</button>
       </form>
     );
   }

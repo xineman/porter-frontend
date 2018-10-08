@@ -25,6 +25,6 @@ class Home extends Component {
   }
 }
 
-export default connect(null, dispatch => ({
-  fetchItems: () => dispatch(fetchAll()),
-}))(Home);
+export default connect(null, {
+  fetchItems: fetchAll.request,
+})(Home);

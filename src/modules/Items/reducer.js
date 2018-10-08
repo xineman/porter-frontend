@@ -1,25 +1,26 @@
 import { handleActions } from 'redux-actions';
-import { fetchAll, fetchAllSuccess } from './actions';
+import { fetchAll } from './actions';
 
 
 const items = handleActions(
   {
-    [fetchAll]: state => ({
+    [fetchAll.request]: state => ({
       ...state,
       fetchingAll: true,
     }),
-    [fetchAllSuccess]: (state, { payload }) => ({
+    [fetchAll.success]: (state, { payload }) => ({
       ...state,
       fetchingAll: false,
       collection: payload.items,
     }),
-    FETCH_ALL_FAILURE: (state, { payload }) => ({
+    [fetchAll.failure]: (state, { payload }) => ({
       ...state,
       fetchingAll: false,
-      collection: payload.items,
+      collection: [],
+      error: payload.message,
     }),
   },
-  { collection: [], fetchingAll: false },
+  { collection: [], error: null, fetchingAll: false },
 );
 
 export default items;

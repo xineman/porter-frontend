@@ -25,7 +25,7 @@ class LoginStatus extends Component {
 
   render() {
     const { isOpen } = this.state;
-    const { isLoggedIn, name } = this.props;
+    const { isLoggedIn, name, signOut } = this.props;
     return (
       <div>
         { isLoggedIn
@@ -45,9 +45,11 @@ class LoginStatus extends Component {
                   <p className={styles.menuItemText}>Settings</p>
                 </Link>
               </li>
-              <li className={styles.menuItem}>
-                <FontAwesomeIcon icon="sign-out-alt" />
-                <p className={styles.menuItemText}>Logout</p>
+              <li>
+                <button type="button" className={styles.menuItem} onClick={signOut}>
+                  <FontAwesomeIcon icon="sign-out-alt" />
+                  <p className={styles.menuItemText}>Logout</p>
+                </button>
               </li>
             </DropdownMenu>
           ) : (
@@ -68,11 +70,11 @@ class LoginStatus extends Component {
 }
 
 LoginStatus.propTypes = {
-  isLoggedIn: T.bool,
+  isLoggedIn: T.bool.isRequired,
   name: T.string,
+  signOut: T.func.isRequired,
 };
-LoginStatus.defaultProps = { // TODO: remove this and make prop required
-  isLoggedIn: false,
+LoginStatus.defaultProps = {
   name: 'Yurii Hupalo',
 };
 
