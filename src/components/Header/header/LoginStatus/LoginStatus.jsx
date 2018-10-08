@@ -75,7 +75,7 @@ LoginStatus.propTypes = {
   signOut: T.func.isRequired,
 };
 LoginStatus.defaultProps = {
-  name: 'Yurii Hupalo',
+  name: null,
 };
 
 export default LoginStatus;

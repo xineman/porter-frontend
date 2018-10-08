@@ -1,8 +1,15 @@
 import { handleActions } from 'redux-actions';
 import {
+  getItem,
+} from 'services/localStorage';
+import { getUserFromToken } from 'services/jwt';
+import {
   signIn,
   signOut,
 } from './actions';
+
+
+const token = getItem('token');
 
 
 const user = handleActions(
@@ -29,7 +36,7 @@ const user = handleActions(
     [signOut.success]: (state, { payload }) => ({
       ...state,
       isLoading: false,
-      payload,
+      ...getUserFromToken(payload.token),
     }),
     [signOut.failure]: (state, { payload }) => ({
       ...state,
@@ -37,7 +44,11 @@ const user = handleActions(
       payload,
     }),
   },
-  { payload: null, isLoading: false, isLoggedIn: true },
+  {
+    payload: null,
+    isLoading: false,
+    ...getUserFromToken(token),
+  },
 );
 
 export default user;

@@ -3,8 +3,8 @@ import { signOut } from 'modules/User/actions';
 import LoginStatus from './LoginStatus';
 
 
-const mapStateToProps = ({ user: { isLoggedIn } }) => ({
-  isLoggedIn,
+const mapStateToProps = ({ user: { token } }) => ({
+  isLoggedIn: !!token,
 });
 
 export default connect(
