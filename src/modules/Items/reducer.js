@@ -11,13 +11,12 @@ const items = handleActions(
     [fetchAll.success]: (state, { payload }) => ({
       ...state,
       fetchingAll: false,
-      collection: payload.items,
+      collection: payload,
     }),
-    [fetchAll.failure]: (state, { payload }) => ({
+    [fetchAll.failure]: state => ({
       ...state,
       fetchingAll: false,
       collection: [],
-      error: payload.message,
     }),
   },
   { collection: [], error: null, fetchingAll: false },

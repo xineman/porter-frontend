@@ -21,22 +21,20 @@ const user = handleActions(
     [signIn.success]: (state, { payload }) => ({
       ...state,
       isLoading: false,
-      payload,
+      ...getUserFromToken(payload.token),
     }),
-    [signIn.failure]: (state, { payload }) => ({
+    [signIn.failure]: state => ({
       ...state,
       isLoading: false,
-      payload,
     }),
-    [signOut.request]: (state, { payload }) => ({
+    [signOut.request]: state => ({
       ...state,
       isLoading: true,
-      payload,
     }),
-    [signOut.success]: (state, { payload }) => ({
+    [signOut.success]: state => ({
       ...state,
       isLoading: false,
-      ...getUserFromToken(payload.token),
+      ...getUserFromToken(),
     }),
     [signOut.failure]: (state, { payload }) => ({
       ...state,
@@ -45,7 +43,6 @@ const user = handleActions(
     }),
   },
   {
-    payload: null,
     isLoading: false,
     ...getUserFromToken(token),
   },

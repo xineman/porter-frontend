@@ -9,6 +9,7 @@ export const getUserFromToken = (token) => { // eslint-disable-line
   if (!token || !decoded) {
     return {
       isLoggedIn: false,
+      name: null,
     };
   }
   return {

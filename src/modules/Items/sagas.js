@@ -1,16 +1,19 @@
 import {
   call, put, takeLatest,
 } from 'redux-saga/effects';
-import axios from 'services/api';
 import { fetchAll } from './actions';
+import {
+  fetchAll as fetchAllApi,
+  // fetchRecent as fetchRecentApi,
+} from './api';
 
 
 function* fetchAllSaga() {
   try {
-    yield call(() => axios.get('/test'));
-    yield put(fetchAll.success({ items: 0 }));
+    const { data } = yield call(fetchAllApi());
+    yield put(fetchAll.success(data));
   } catch (e) {
-    yield put(fetchAll.failure({ items: 0 }));
+    yield put(fetchAll.failure());
   }
 }
 

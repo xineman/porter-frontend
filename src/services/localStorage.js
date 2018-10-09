@@ -10,4 +10,4 @@ export const setItem = (key, value) => {
   window.localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const { removeItem } = window.localStorage;
+export const removeItem = key => window.localStorage.removeItem(key);

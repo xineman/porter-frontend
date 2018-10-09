@@ -3,6 +3,7 @@ import {
 } from 'redux-saga/effects';
 import {
   removeItem,
+  setItem,
 } from 'services/localStorage';
 import {
   signIn,
@@ -16,8 +17,9 @@ import {
 
 function* signInSaga({ payload }) {
   try {
-    const res = yield call(login(payload));
-    yield put(signIn.success(res));
+    const { data } = yield call(login(payload));
+    yield put(signIn.success(data));
+    setItem('token', data.token);
   } catch (e) {
     yield put(signIn.failure());
   }
@@ -25,9 +27,9 @@ function* signInSaga({ payload }) {
 
 function* signOutSaga() {
   try {
-    const res = yield call(logout());
+    yield call(logout());
     removeItem('token');
-    yield put(signOut.success(res));
+    yield put(signOut.success());
   } catch (e) {
     yield put(signOut.failure());
   }

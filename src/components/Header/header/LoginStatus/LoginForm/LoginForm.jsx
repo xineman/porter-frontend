@@ -22,14 +22,15 @@ class LoginForm extends Component {
     }));
   }
 
-  handleSignIn = () => {
+  handleSignIn = (e) => {
+    e.preventDefault();
     this.props.signIn(this.state);
   }
 
   render() {
     const { email, password } = this.state;
     return (
-      <form className={styles.root}>
+      <form className={styles.root} onSubmit={this.handleSignIn}>
         <div className={styles.inputWrapper}>
           <label className={styles.label} htmlFor="email">Email:</label>
           <input
@@ -52,7 +53,7 @@ class LoginForm extends Component {
             onChange={this.handleInput}
           />
         </div>
-        <button className={styles.submit} type="button" onClick={this.handleSignIn}>Sign in</button>
+        <button className={styles.submit} type="submit">Sign in</button>
       </form>
     );
   }

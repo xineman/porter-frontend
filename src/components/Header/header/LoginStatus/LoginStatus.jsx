@@ -17,6 +17,13 @@ class LoginStatus extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    const { isLoggedIn } = this.props;
+    if (isLoggedIn && isLoggedIn !== prevProps.isLoggedIn) {
+      this.toggleLoginPopup();
+    }
+  }
+
   toggleLoginPopup = () => {
     this.setState(state => ({
       isOpen: !state.isOpen,
