@@ -1,14 +1,14 @@
 import { createActions } from 'redux-actions';
 
 
-export const { items: { fetchAll, update } } = createActions({
+export const { items: { fetchAll, fetchRecent } } = createActions({
   ITEMS: {
     FETCH_ALL: {
       REQUEST: undefined,
       SUCCESS: undefined,
       FAILURE: undefined,
     },
-    UPDATE: {
+    FETCH_RECENT: {
       REQUEST: undefined,
       SUCCESS: undefined,
       FAILURE: undefined,

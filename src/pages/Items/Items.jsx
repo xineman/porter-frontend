@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import T from 'prop-types';
 import classnames from 'classnames';
+import ItemRow from 'components/ItemRow';
 import styles from './styles';
-import ItemRow from './ItemRow';
 
 
 class Items extends Component {
