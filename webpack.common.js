@@ -3,57 +3,70 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
   APP_PATH,
   NODE_MODULES_PATH,
-  ASSETS_PATH
+  ASSETS_PATH,
 } = require('./config/paths');
 const {
-  alias
+  alias,
 } = require('./config/alias');
 const {
-  imagesLoader
+  imagesLoader,
+  fileLoader,
 } = require('./config/loaders');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
-  entry: path.resolve(APP_PATH, 'index.js'),
+  entry: [
+    '@babel/polyfill',
+    path.resolve(APP_PATH, 'index.jsx'),
+  ],
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader'
-        ]
+          'css-loader',
+        ],
       },
       {
         test: /\.jsx?$/,
         exclude: NODE_MODULES_PATH,
         use: [
           'babel-loader',
-          'eslint-loader'
-        ]
+          'eslint-loader',
+        ],
       },
       {
         test: /\.(svg|png|jpg|gif)$/,
         include: [
-          ASSETS_PATH
+          ASSETS_PATH,
         ],
         use: [
-          imagesLoader
-        ]
-      }
-    ]
+          imagesLoader,
+        ],
+      },
+      {
+        test: /\.woff2?$/,
+        include: [
+          ASSETS_PATH,
+        ],
+        use: [
+          fileLoader,
+        ],
+      },
+    ],
   },
   resolve: {
     extensions: [
       '.js',
       '.jsx',
-      '.scss'
+      '.scss',
     ],
-    alias
+    alias,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './config/template.html'
-    })
-  ]
+      template: './config/template.html',
+    }),
+  ],
 };
