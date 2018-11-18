@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import styles from './styles';
 import LoginStatus from './header/LoginStatus';
+import ProjectSelector from './header/ProjectSelector';
 
 
 const Header = () => (
@@ -14,6 +15,9 @@ const Header = () => (
         </h1>
         <p className={styles.description}>simple error tracker & reporter</p>
       </Link>
+      <div className={styles.projectSelector}>
+        <ProjectSelector />
+      </div>
       <nav className={styles.menu}>
         <Link className={styles.menuLink} to="/items">items</Link>
       </nav>

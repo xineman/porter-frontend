@@ -31,9 +31,14 @@
   font-weight: 400;
 }
 
+.projectSelector {
+  height: 100%;
+  border-left: 1px solid #FFF;
+  margin-left: 15px;
+}
+
 .menu {
   height: 100%;
-  margin: 0 15px;
   border-left: 1px solid #FFF;
   display: flex;
   align-items: center;

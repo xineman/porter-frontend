@@ -8,18 +8,18 @@ import {
 } from './api';
 
 
-function* fetchAllSaga() {
+function* fetchAllSaga({ payload }) {
   try {
-    const { data } = yield call(fetchAllApi());
+    const { data } = yield call(fetchAllApi(payload));
     yield put(fetchAll.success(data));
   } catch (e) {
     yield put(fetchAll.failure());
   }
 }
 
-function* fetchRecentSaga() {
+function* fetchRecentSaga({ payload }) {
   try {
-    const { data } = yield call(fetchRecentApi());
+    const { data } = yield call(fetchRecentApi(payload));
     yield put(fetchRecent.success(data));
   } catch (e) {
     yield put(fetchRecent.failure());

@@ -14,16 +14,17 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const { isLoggedIn } = this.props;
-    if (isLoggedIn) {
-      this.props.fetchRecent();
+    const { isLoggedIn, selectedProject } = this.props;
+    if (isLoggedIn && selectedProject) {
+      this.props.fetchRecent(selectedProject.token);
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { isLoggedIn, fetchingRecent } = this.props;
-    if (isLoggedIn && isLoggedIn !== prevProps.isLoggedIn && !fetchingRecent) {
-      this.props.fetchRecent();
+    const { isLoggedIn, fetchingRecent, selectedProject } = this.props;
+    if (isLoggedIn && selectedProject && !fetchingRecent
+      && (isLoggedIn !== prevProps.isLoggedIn || selectedProject !== prevProps.selectedProject)) {
+      this.props.fetchRecent(selectedProject.token);
     }
   }
 
@@ -42,12 +43,12 @@ class Home extends Component {
         <div className={styles.listContainer}>
           <div className={styles.listHeader}>
             <div className={classnames(styles.listHeaderText, styles.id)}>ID</div>
+            <div className={classnames(styles.listHeaderText, styles.level)}>Level</div>
             <div className={classnames(styles.listHeaderText, styles.errorInfo)}>Error Message</div>
-            <div className={classnames(styles.listHeaderText, styles.environment)}>Environment</div>
             <div className={classnames(styles.listHeaderText, styles.createDate)}>Date</div>
           </div>
           <ul className={styles.list}>
-            { recentCollection.TODAY.map(c => <ItemRow {...c} />) }
+            { recentCollection.TODAY.map(c => <ItemRow key={c.id} {...c} />) }
           </ul>
         </div>
         { !!recentCollection.YESTERDAY.length && (
@@ -56,16 +57,16 @@ class Home extends Component {
             <div className={styles.listContainer}>
               <div className={styles.listHeader}>
                 <div className={classnames(styles.listHeaderText, styles.id)}>ID</div>
+                <div className={classnames(styles.listHeaderText, styles.level)}>
+                  Level
+                </div>
                 <div className={classnames(styles.listHeaderText, styles.errorInfo)}>
                   Error Message
-                </div>
-                <div className={classnames(styles.listHeaderText, styles.environment)}>
-                  Environment
                 </div>
                 <div className={classnames(styles.listHeaderText, styles.createDate)}>Date</div>
               </div>
               <ul className={styles.list}>
-                { recentCollection.YESTERDAY.map(c => <ItemRow {...c} />) }
+                { recentCollection.YESTERDAY.map(c => <ItemRow key={c.id} {...c} />) }
               </ul>
             </div>
           </div>

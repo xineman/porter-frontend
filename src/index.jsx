@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { hot } from 'react-hot-loader';
+// import { hot } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from 'modules/store';
@@ -17,6 +17,6 @@ const App = () => (
   </Router>
 );
 
-const HotApp = hot(module)(App);
+// const HotApp = hot(module)(App);
 
-render(<HotApp />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
