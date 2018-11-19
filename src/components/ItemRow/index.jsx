@@ -6,13 +6,13 @@ import styles from './styles';
 
 
 const ItemRow = ({
-  id,
+  number,
   createDate,
   type,
   errorInfo,
 }) => (
   <li className={styles.root}>
-    <div className={classnames(styles.text, styles.id)}>{ id }</div>
+    <div className={classnames(styles.text, styles.id)}>{ number }</div>
     <div className={classnames(styles.text, styles.level)}>{ type }</div>
     <div className={classnames(styles.text, styles.errorInfo)}>{ errorInfo }</div>
     <div className={classnames(styles.text, styles.createDate)}>{ moment(createDate).format('LLL') }</div>
@@ -20,7 +20,7 @@ const ItemRow = ({
 );
 
 ItemRow.propTypes = {
-  id: T.string.isRequired,
+  number: T.number.isRequired,
   errorInfo: T.string.isRequired,
   type: T.string.isRequired,
   createDate: T.string.isRequired,
