@@ -20,6 +20,7 @@ const Header = () => (
       </div>
       <nav className={styles.menu}>
         <Link className={styles.menuLink} to="/items">items</Link>
+        <Link className={styles.menuLink} to="/new-project">create project</Link>
       </nav>
     </div>
     <LoginStatus />

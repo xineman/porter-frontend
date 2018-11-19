@@ -1,9 +1,10 @@
 import {
-  call, put, takeLatest,
+  call, put, takeLatest, all,
 } from 'redux-saga/effects';
-import { fetchAll } from './actions';
+import { fetchAll, create } from './actions';
 import {
   fetchAll as fetchAllApi,
+  create as createApi,
 } from './api';
 
 
@@ -16,8 +17,20 @@ function* fetchAllSaga() {
   }
 }
 
+function* createSaga({ payload }) {
+  try {
+    const { data } = yield call(createApi(payload));
+    yield put(create.success(data));
+  } catch (e) {
+    yield put(create.failure());
+  }
+}
+
 function* rootProjectsSaga() {
-  yield takeLatest([fetchAll.request], fetchAllSaga);
+  yield all([
+    takeLatest([fetchAll.request], fetchAllSaga),
+    takeLatest([create.request], createSaga),
+  ]);
 }
 
 export default rootProjectsSaga;
