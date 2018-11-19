@@ -16,7 +16,7 @@ const items = handleActions(
     [fetchAll.success]: (state, { payload }) => ({
       ...state,
       fetchingAll: false,
-      collection: payload,
+      collection: payload.reverse(),
     }),
     [fetchAll.failure]: state => ({
       ...state,
@@ -31,7 +31,10 @@ const items = handleActions(
     [fetchRecent.success]: (state, { payload }) => ({
       ...state,
       fetchingRecent: false,
-      recentCollection: payload,
+      recentCollection: {
+        TODAY: payload.TODAY.reverse(),
+        YESTERDAY: payload.YESTERDAY.reverse(),
+      },
     }),
     [fetchRecent.failure]: state => ({
       ...state,
