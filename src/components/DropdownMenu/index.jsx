@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import T from 'prop-types';
 import classnames from 'classnames';
+import withClickOutside from 'components/withClickOutside';
 import styles from './styles';
 
 
@@ -20,6 +21,7 @@ class DropdownMenu extends Component {
     this.state = {
       isOpen: false,
     };
+    this.root = React.createRef();
   }
 
   toggle = () => {
@@ -28,11 +30,19 @@ class DropdownMenu extends Component {
     }));
   }
 
+  handleClickOutside = () => {
+    this.setState({ isOpen: false });
+  }
+
   render() {
     const { isOpen } = this.state;
-    const { title, children, listClassName } = this.props;
+    const {
+      title,
+      children,
+      listClassName,
+    } = this.props;
     return (
-      <div role="presentation" className={styles.root} onClick={this.toggle}>
+      <div ref={this.root} role="presentation" className={styles.root} onClick={this.toggle}>
         <div className={styles.title}>
           { title }
         </div>
@@ -46,4 +56,4 @@ class DropdownMenu extends Component {
   }
 }
 
-export default DropdownMenu;
+export default withClickOutside(DropdownMenu);
