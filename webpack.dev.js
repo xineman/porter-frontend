@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const merge = require('webpack-merge');
-const { HotModuleReplacementPlugin, DefinePlugin } = require('webpack');
-const Dotenv = require('dotenv-webpack');
+const { HotModuleReplacementPlugin } = require('webpack');
 const common = require('./webpack.common.js');
 
 const {
@@ -52,7 +51,7 @@ module.exports = merge(common, {
     hot: true,
     port: 3000,
     inline: true,
-    host: 'localhost',
+    host: '0.0.0.0',
     historyApiFallback: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     compress: true,
@@ -62,15 +61,5 @@ module.exports = merge(common, {
   },
   plugins: [
     new HotModuleReplacementPlugin(),
-
-    new DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
-    }),
-
-    new Dotenv({
-      path: './.staging.env',
-    }),
   ],
 });

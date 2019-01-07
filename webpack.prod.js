@@ -1,7 +1,6 @@
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 const common = require('./webpack.common.js');
 
@@ -43,8 +42,6 @@ module.exports = merge(common, {
     ],
   },
 
-  devtool: 'source-map',
-
   output: {
     path: DIST_PATH,
     filename: '[name].[chunkhash].js',
@@ -52,17 +49,12 @@ module.exports = merge(common, {
     sourceMapFilename: '[name].[chunkhash].js.map',
   },
 
+  optimization: {
+    minimizer: [new TerserPlugin()],
+  },
+
   plugins: [
-    new UglifyJSPlugin({
-      uglifyOptions: {
-        ecma: 7,
-      },
-      sourceMap: true,
-    }),
-
     new MiniCssExtractPlugin({ filename: 'main.[chunkhash].css' }),
-
-    new Dotenv(),
 
     new Visualizer(),
   ],
