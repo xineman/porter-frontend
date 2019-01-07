@@ -1,7 +1,15 @@
 import { createActions } from 'redux-actions';
 
 
-export const { projects: { fetchAll, select, create } } = createActions({
+export const {
+  projects: {
+    fetchAll,
+    select,
+    create,
+    addUser,
+    removeUser,
+  },
+} = createActions({
   PROJECTS: {
     FETCH_ALL: {
       REQUEST: undefined,
@@ -10,6 +18,16 @@ export const { projects: { fetchAll, select, create } } = createActions({
     },
     SELECT: undefined,
     CREATE: {
+      REQUEST: undefined,
+      SUCCESS: undefined,
+      FAILURE: undefined,
+    },
+    ADD_USER: {
+      REQUEST: undefined,
+      SUCCESS: undefined,
+      FAILURE: undefined,
+    },
+    REMOVE_USER: {
       REQUEST: undefined,
       SUCCESS: undefined,
       FAILURE: undefined,
