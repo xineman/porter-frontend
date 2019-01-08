@@ -3,8 +3,8 @@
   align-items: center;
   font-size: 14px;
   color: #22556E;
-  padding: 5px 15px;
-  margin: 0 -5px;
+  padding: 5px 10px;
+  margin: 0;
   &:hover {
     background-color: #94CFC9;
     color: #FFF;
@@ -38,4 +38,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   flex: none;
+}
+
+.status {
+  width: 100px;
+  flex: none;
+  margin: 0;
 }

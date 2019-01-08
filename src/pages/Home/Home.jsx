@@ -46,6 +46,7 @@ class Home extends Component {
             <div className={classnames(styles.listHeaderText, styles.level)}>Level</div>
             <div className={classnames(styles.listHeaderText, styles.errorInfo)}>Error Message</div>
             <div className={classnames(styles.listHeaderText, styles.createDate)}>Date</div>
+            <div className={classnames(styles.listHeaderText, styles.status)}>Status</div>
           </div>
           <ul className={styles.list}>
             { recentCollection.TODAY.map(c => <ItemRow key={c.id} {...c} />) }

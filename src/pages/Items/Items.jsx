@@ -12,7 +12,8 @@ class Items extends Component {
   static propTypes = {
     isLoggedIn: T.bool.isRequired,
     fetchingAll: T.bool.isRequired,
-    collection: T.arrayOf(T.shape()).isRequired,
+    collection: T.shape().isRequired,
+    uniqueTickets: T.arrayOf(T.shape()).isRequired,
     fetchAll: T.func.isRequired,
     selectedProject: projectShape,
   }
@@ -37,7 +38,7 @@ class Items extends Component {
   }
 
   render() {
-    const { collection } = this.props;
+    const { uniqueTickets, collection } = this.props;
     return (
       <div className={styles.root}>
         <div className={styles.listContainer}>
@@ -45,10 +46,14 @@ class Items extends Component {
             <div className={classnames(styles.listHeaderText, styles.id)}>ID</div>
             <div className={classnames(styles.listHeaderText, styles.level)}>Level</div>
             <div className={classnames(styles.listHeaderText, styles.errorInfo)}>Error Message</div>
-            <div className={classnames(styles.listHeaderText, styles.createDate)}>Date</div>
+            <div className={classnames(styles.listHeaderText, styles.createDate)}>Last Date</div>
+            <div className={classnames(styles.listHeaderText, styles.level)}>Count</div>
+            <div className={classnames(styles.listHeaderText, styles.status)}>Status</div>
           </div>
           <ul className={styles.list}>
-            { collection.map(c => <ItemRow key={c.id} {...c} />) }
+            { uniqueTickets.map(c => (
+              <ItemRow key={c.id} {...c} count={collection[c.number].length} />
+            )) }
           </ul>
         </div>
       </div>

@@ -1,10 +1,11 @@
 import {
   call, put, takeLatest, all,
 } from 'redux-saga/effects';
-import { fetchAll, fetchRecent } from './actions';
+import { fetchAll, fetchRecent, updateStatus } from './actions';
 import {
   fetchAll as fetchAllApi,
   fetchRecent as fetchRecentApi,
+  updateStatus as updateStatusApi,
 } from './api';
 
 
@@ -26,10 +27,20 @@ function* fetchRecentSaga({ payload }) {
   }
 }
 
+function* updateStatusSaga({ payload }) {
+  try {
+    yield call(updateStatusApi(payload));
+    yield put(updateStatus.success(payload));
+  } catch (e) {
+    yield put(updateStatus.failure());
+  }
+}
+
 function* rootUserSaga() {
   yield all([
     takeLatest([fetchAll.request], fetchAllSaga),
     takeLatest([fetchRecent.request], fetchRecentSaga),
+    takeLatest([updateStatus.request], updateStatusSaga),
   ]);
 }
 

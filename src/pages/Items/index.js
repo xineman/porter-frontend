@@ -5,12 +5,13 @@ import Items from './Items';
 
 const mapStateToProps = ({
   user: { isLoggedIn },
-  items: { fetchingAll, collection },
+  items: { fetchingAll, collection, uniqueTickets },
   projects: { selected },
 }) => ({
   isLoggedIn,
   fetchingAll,
   collection,
+  uniqueTickets,
   selectedProject: selected,
 });
 
