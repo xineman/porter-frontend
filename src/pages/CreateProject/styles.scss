@@ -1,6 +1,13 @@
 .root {
+  position: relative;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.form {
   width: 300px;
-  margin: 15px auto;
+  margin: 0 auto;
+  padding-top: 45px;
 }
 
 .inputWrapper {
@@ -25,4 +32,14 @@
   background: #22556E;
   color: #FFF;
   border: none;
+}
+
+.status {
+  background: #22556E;
+  color: #FFF;
+  padding: 5px 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  position: absolute;
+  width: 100%;
 }

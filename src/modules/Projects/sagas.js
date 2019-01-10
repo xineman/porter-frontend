@@ -1,3 +1,4 @@
+import { delay } from 'redux-saga';
 import {
   call, put, takeLatest, all,
 } from 'redux-saga/effects';
@@ -28,6 +29,8 @@ function* createSaga({ payload }) {
   try {
     const { data } = yield call(createApi(payload));
     yield put(create.success(data));
+    yield call(delay, 3000);
+    yield put(create.resetStatus());
   } catch (e) {
     yield put(create.failure());
   }

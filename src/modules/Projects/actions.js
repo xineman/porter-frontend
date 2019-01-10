@@ -21,6 +21,7 @@ export const {
       REQUEST: undefined,
       SUCCESS: undefined,
       FAILURE: undefined,
+      RESET_STATUS: undefined,
     },
     ADD_USER: {
       REQUEST: undefined,

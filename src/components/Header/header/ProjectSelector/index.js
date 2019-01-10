@@ -5,9 +5,11 @@ import {
 import ProjectSelector from './projectSelector';
 
 
-const mapStateToProps = ({ projects }) => ({
+const mapStateToProps = ({ projects, user: { isLoggedIn } }) => ({
   projects: projects.collection,
   selected: projects.selected,
+  creatingStatus: projects.creatingStatus,
+  isLoggedIn,
 });
 
 export default connect(mapStateToProps, {

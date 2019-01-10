@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import {
   fetchAll,
+  create,
   select,
   addUser,
   removeUser,
@@ -22,6 +23,22 @@ const projects = handleActions(
       ...state,
       fetching: false,
       collection: [],
+    }),
+    [create.request]: state => ({
+      ...state,
+      creatingStatus: 'fetching',
+    }),
+    [create.success]: state => ({
+      ...state,
+      creatingStatus: 'success',
+    }),
+    [create.failure]: state => ({
+      ...state,
+      creatingStatus: 'failure',
+    }),
+    [create.resetStatus]: state => ({
+      ...state,
+      creatingStatus: null,
     }),
     [select]: (state, { payload }) => ({
       ...state,
@@ -64,6 +81,7 @@ const projects = handleActions(
     selected: null,
     error: null,
     fetching: false,
+    creatingStatus: null,
   },
 );
 

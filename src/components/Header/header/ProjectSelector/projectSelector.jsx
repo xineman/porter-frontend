@@ -13,10 +13,14 @@ const ProjectSelector = ({
   selected,
   fetchAll,
   selectProject,
+  creatingStatus,
+  isLoggedIn,
 }) => {
   useEffect(() => {
-    fetchAll();
-  }, []);
+    if (isLoggedIn && !creatingStatus) {
+      fetchAll();
+    }
+  }, [isLoggedIn, creatingStatus]);
 
   useEffect(() => {
     selectProject(projects[0]);
@@ -48,10 +52,13 @@ ProjectSelector.propTypes = {
   selected: projectShape,
   selectProject: T.func.isRequired,
   fetchAll: T.func.isRequired,
+  creatingStatus: T.string,
+  isLoggedIn: T.bool.isRequired,
 };
 
 ProjectSelector.defaultProps = {
   selected: null,
+  creatingStatus: null,
 };
 
 export default ProjectSelector;

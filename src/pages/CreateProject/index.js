@@ -3,4 +3,8 @@ import { create } from 'modules/Projects/actions';
 import CreateProject from './CreateProject';
 
 
-export default connect(null, { create: create.request })(CreateProject);
+const mapStateToProps = ({ projects: { creatingStatus } }) => ({
+  creatingStatus,
+});
+
+export default connect(mapStateToProps, { create: create.request })(CreateProject);

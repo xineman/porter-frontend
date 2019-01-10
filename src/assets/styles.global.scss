@@ -49,3 +49,25 @@ html {
   opacity: 0.01;
   transition: opacity 250ms ease-in;
 }
+
+.slide-down-enter {
+  transform: translateY(-100%);
+  opacity: .01;
+}
+
+.slide-down-enter.slide-down-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 250ms ease-in;
+}
+
+.slide-down-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-down-leave.slide-down-leave-active {
+  opacity: 0.01;
+  transform: translateY(-100%);
+  transition: all 250ms ease-in;
+}
