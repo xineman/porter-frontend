@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { fetchAll, fetchRecent, updateStatus } from './actions';
+import { reduceErrorsArray } from './helpers';
 
 
 const initialRecents = {
@@ -18,16 +19,7 @@ const items = handleActions(
       ticketsStatus.forEach((s) => {
         statuses[s.ticketNumber] = s.status;
       });
-      const collection = tickets
-        .reverse()
-        .reduce((res, c) => {
-          if (res[c.number]) {
-            res[c.number].push(c);
-          } else {
-            res[c.number] = [c];
-          }
-          return res;
-        }, {});
+      const collection = reduceErrorsArray(tickets);
       return {
         ...state,
         fetchingAll: false,
@@ -51,12 +43,18 @@ const items = handleActions(
       ticketsStatus.forEach((s) => {
         statuses[s.ticketNumber] = s.status;
       });
+      const today = reduceErrorsArray(tickets.TODAY);
+      const yesterday = reduceErrorsArray(tickets.YESTERDAY);
       return {
         ...state,
         fetchingRecent: false,
         recentCollection: {
-          TODAY: tickets.TODAY.reverse(),
-          YESTERDAY: tickets.YESTERDAY.reverse(),
+          TODAY: today,
+          YESTERDAY: yesterday,
+        },
+        uniqueRecentTickets: {
+          TODAY: Object.keys(today).map(k => today[k][0]),
+          YESTERDAY: Object.keys(yesterday).map(k => yesterday[k][0]),
         },
         statuses,
       };
@@ -79,6 +77,7 @@ const items = handleActions(
     uniqueTickets: [],
     statuses: {},
     recentCollection: initialRecents,
+    uniqueRecentTickets: initialRecents,
     error: null,
     fetchingAll: false,
     fetchingRecent: false,

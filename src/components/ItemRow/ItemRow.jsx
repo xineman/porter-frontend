@@ -12,6 +12,7 @@ const ItemRow = ({
   type,
   errorInfo,
   count,
+  meta,
   statuses,
   updateStatus,
 }) => {
@@ -29,6 +30,7 @@ const ItemRow = ({
       <div className={classnames(styles.text, styles.errorInfo)}>{ errorInfo }</div>
       <div className={classnames(styles.text, styles.createDate)}>{ moment(createDate).format('LLL') }</div>
       <div className={classnames(styles.text, styles.level)}>{ count }</div>
+      <div className={classnames(styles.text, styles.createDate)}>{ JSON.stringify(meta) }</div>
       <div className={classnames(styles.text, styles.status)}>
         <select name="status" id="status" value={statuses[number]} onChange={handleStatus}>
           <option value="NEW">New</option>
@@ -48,6 +50,7 @@ ItemRow.propTypes = {
   type: T.string.isRequired,
   createDate: T.string.isRequired,
   count: T.number.isRequired,
+  meta: T.shape().isRequired,
   statuses: T.shape(T.string),
   updateStatus: T.func.isRequired,
 };

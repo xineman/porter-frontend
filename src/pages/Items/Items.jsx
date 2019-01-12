@@ -48,6 +48,7 @@ class Items extends Component {
             <div className={classnames(styles.listHeaderText, styles.errorInfo)}>Error Message</div>
             <div className={classnames(styles.listHeaderText, styles.createDate)}>Last Date</div>
             <div className={classnames(styles.listHeaderText, styles.level)}>Count</div>
+            <div className={classnames(styles.listHeaderText, styles.createDate)}>Meta Info</div>
             <div className={classnames(styles.listHeaderText, styles.status)}>Status</div>
           </div>
           <ul className={styles.list}>

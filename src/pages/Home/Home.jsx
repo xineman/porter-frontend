@@ -10,6 +10,7 @@ class Home extends Component {
     isLoggedIn: T.bool.isRequired,
     fetchingRecent: T.bool.isRequired,
     recentCollection: T.shape().isRequired,
+    uniqueRecentTickets: T.shape().isRequired,
     fetchRecent: T.func.isRequired,
   }
 
@@ -29,7 +30,7 @@ class Home extends Component {
   }
 
   render() {
-    const { recentCollection, isLoggedIn } = this.props;
+    const { uniqueRecentTickets, recentCollection, isLoggedIn } = this.props;
     if (!isLoggedIn) {
       return (
         <div className={styles.title}>
@@ -45,14 +46,18 @@ class Home extends Component {
             <div className={classnames(styles.listHeaderText, styles.id)}>ID</div>
             <div className={classnames(styles.listHeaderText, styles.level)}>Level</div>
             <div className={classnames(styles.listHeaderText, styles.errorInfo)}>Error Message</div>
-            <div className={classnames(styles.listHeaderText, styles.createDate)}>Date</div>
+            <div className={classnames(styles.listHeaderText, styles.createDate)}>Last Date</div>
+            <div className={classnames(styles.listHeaderText, styles.level)}>Count</div>
+            <div className={classnames(styles.listHeaderText, styles.createDate)}>Meta Info</div>
             <div className={classnames(styles.listHeaderText, styles.status)}>Status</div>
           </div>
           <ul className={styles.list}>
-            { recentCollection.TODAY.map(c => <ItemRow key={c.id} {...c} />) }
+            { uniqueRecentTickets.TODAY.map(c => (
+              <ItemRow key={c.id} {...c} count={recentCollection.TODAY[c.number].length} />
+            )) }
           </ul>
         </div>
-        { !!recentCollection.YESTERDAY.length && (
+        { !!uniqueRecentTickets.YESTERDAY.length && (
           <div>
             <h3 className={styles.title}>Yesterday top errors:</h3>
             <div className={styles.listContainer}>
@@ -64,10 +69,18 @@ class Home extends Component {
                 <div className={classnames(styles.listHeaderText, styles.errorInfo)}>
                   Error Message
                 </div>
-                <div className={classnames(styles.listHeaderText, styles.createDate)}>Date</div>
+                <div className={classnames(styles.listHeaderText, styles.createDate)}>
+                  Last Date
+                </div>
+                <div className={classnames(styles.listHeaderText, styles.level)}>Count</div>
+                <div className={classnames(styles.listHeaderText, styles.createDate)}>
+                  Meta Info
+                </div>
               </div>
               <ul className={styles.list}>
-                { recentCollection.YESTERDAY.map(c => <ItemRow key={c.id} {...c} />) }
+                { uniqueRecentTickets.YESTERDAY.map(c => (
+                  <ItemRow key={c.id} {...c} count={recentCollection.YESTERDAY[c.number].length} />
+                )) }
               </ul>
             </div>
           </div>
