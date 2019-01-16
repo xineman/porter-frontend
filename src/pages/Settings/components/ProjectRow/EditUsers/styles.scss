@@ -1,0 +1,46 @@
+.title {
+  margin: 0 0 10px;
+}
+
+.user {
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.button {
+  padding: 5px 10px;
+  background: #4799B7;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background: #22556E;
+  }
+}
+
+.removeUser {
+  margin-right: 10px;
+}
+
+.addUser {
+  margin-left: 10px;
+}
+
+.addUserTitle {
+  font-size: 14px;
+  margin: 15px 0 10px;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 0 5px;
+}

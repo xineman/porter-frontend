@@ -1,0 +1,55 @@
+.root {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #22556E;
+  padding: 5px 10px;
+  margin: 0;
+  &:hover {
+    background-color: #94CFC9;
+    color: #FFF;
+  }
+}
+
+.text {
+  margin: 0 5px;
+}
+
+.id {
+  width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+  flex-shrink: 0;
+}
+
+.errorInfo {
+  flex-grow: 1;
+  flex-basis: 0;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.level {
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+  flex-shrink: 0;
+}
+
+.createDate {
+  width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+  flex-shrink: 0;
+}
+
+.status {
+  width: 100px;
+  flex: none;
+  margin: 0;
+  flex-shrink: 0;
+}

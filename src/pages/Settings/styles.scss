@@ -1,0 +1,44 @@
+.root {
+  height: calc(100% - 60px);
+  width: 1000px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 5px 15px;
+  margin: 0 -5px;
+}
+
+.text {
+  margin: 0 5px;
+}
+
+.token {
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+}
+
+.name {
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+}
+
+.origin {
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+}
+
+.users {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+}

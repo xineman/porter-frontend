@@ -1,0 +1,61 @@
+.root {
+  height: calc(100% - 60px);
+}
+
+.listContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 15px 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.listHeader {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 2px 15px;
+  margin: 0 -5px 5px;
+  flex: none;
+}
+
+.list {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.listHeaderText {
+  margin: 0 5px;
+}
+
+.id {
+  width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+}
+
+.errorInfo {
+  flex-grow: 1;
+}
+
+.level {
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+}
+
+.createDate {
+  width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+}
+
+.status {
+  width: 100px;
+  flex: none;
+  margin: 0;
+}

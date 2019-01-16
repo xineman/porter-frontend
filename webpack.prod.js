@@ -1,16 +1,16 @@
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const TerserPlugin = require('terser-webpack-plugin');
+const Visualizer = require('webpack-visualizer-plugin');
 const common = require('./webpack.common.js');
 
 const {
-  DIST_PATH
+  DIST_PATH,
 } = require('./config/paths');
 const {
   cssLoader,
   sassLoader,
-  postcssLoader
+  postcssLoader,
 } = require('./config/loaders');
 
 
@@ -26,41 +26,36 @@ module.exports = merge(common, {
               MiniCssExtractPlugin.loader,
               'css-loader',
               postcssLoader,
-              sassLoader
-            ]
+              sassLoader,
+            ],
           },
           {
             use: [
               MiniCssExtractPlugin.loader,
               cssLoader,
               postcssLoader,
-              sassLoader
-            ]
-          }
-        ]
-      }
-    ]
+              sassLoader,
+            ],
+          },
+        ],
+      },
+    ],
   },
-
-  devtool: 'source-map',
 
   output: {
     path: DIST_PATH,
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
-    sourceMapFilename: '[name].[chunkhash].js.map'
+    sourceMapFilename: '[name].[chunkhash].js.map',
+  },
+
+  optimization: {
+    minimizer: [new TerserPlugin()],
   },
 
   plugins: [
-    new UglifyJSPlugin({
-      uglifyOptions: {
-        ecma: 7
-      },
-      sourceMap: true
-    }),
-
     new MiniCssExtractPlugin({ filename: 'main.[chunkhash].css' }),
 
-    new Dotenv()
-  ]
+    new Visualizer(),
+  ],
 });

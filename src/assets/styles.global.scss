@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+html {
+  font-family: 'Open sans';
+  color: #333;
+}
+
+#root {
+  height: 100vh;
+}
+
+.container {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+       url('./fonts/open-sans-v15-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./fonts/open-sans-v15-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+.fadein-enter {
+  opacity: 0.01;
+}
+
+.fadein-enter.fadein-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
+.fadein-leave {
+  opacity: 1;
+}
+
+.fadein-leave.fadein-leave-active {
+  opacity: 0.01;
+  transition: opacity 250ms ease-in;
+}
+
+.slide-down-enter {
+  transform: translateY(-100%);
+  opacity: .01;
+}
+
+.slide-down-enter.slide-down-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 250ms ease-in;
+}
+
+.slide-down-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-down-leave.slide-down-leave-active {
+  opacity: 0.01;
+  transform: translateY(-100%);
+  transition: all 250ms ease-in;
+}

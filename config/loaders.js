@@ -42,10 +42,19 @@ const imagesLoader = {
   }
 };
 
+const fileLoader = {
+  loader: 'file-loader',
+  options: {
+    limit: 8192,
+    name: '[name]-[hash].[ext]',
+  },
+};
+
 
 module.exports = {
   cssLoader,
   sassLoader,
   postcssLoader,
-  imagesLoader
+  imagesLoader,
+  fileLoader,
 };
